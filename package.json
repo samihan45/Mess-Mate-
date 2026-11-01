@@ -4,8 +4,13 @@
   "private": true,
   "description": "MessMate: discover nearby messes by today's menu, estimated crowd, price and ratings.",
   "license": "MIT",
-  "workspaces": ["client", "server"],
-  "engines": { "node": ">=20" },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "concurrently -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
     "build": "npm run build -w server && npm run build -w client",
@@ -17,5 +22,12 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
+  },
+  "allowScripts": {
+    "@prisma/client@5.22.0": true,
+    "prisma@5.22.0": true,
+    "@prisma/engines@5.22.0": true,
+    "esbuild@0.28.2": true,
+    "esbuild@0.21.5": true
   }
 }
