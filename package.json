@@ -1,0 +1,21 @@
+{
+  "name": "messmate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MessMate: discover nearby messes by today's menu, estimated crowd, price and ratings.",
+  "license": "MIT",
+  "workspaces": ["client", "server"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w server && npm run build -w client",
+    "test": "npm run test -w server && npm run test -w client",
+    "db:generate": "npm run db:generate -w server",
+    "db:migrate": "npm run db:migrate -w server",
+    "db:deploy": "npm run db:deploy -w server",
+    "db:seed": "npm run db:seed -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

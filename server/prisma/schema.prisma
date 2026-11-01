@@ -1,0 +1,253 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  OWNER
+  ADMIN
+}
+
+enum MessStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+  SUSPENDED
+}
+
+enum FoodType {
+  VEG
+  NON_VEG
+  BOTH
+}
+
+enum DishCategory {
+  SABJI
+  DAL
+  RICE
+  ROTI
+  THALI
+  SNACK
+  SWEET
+  OTHER
+}
+
+enum CrowdLevel {
+  LOW
+  MODERATE
+  HIGH
+}
+
+enum CrowdSource {
+  STUDENT
+  OWNER
+}
+
+enum ReviewStatus {
+  VISIBLE
+  HIDDEN
+}
+
+enum VerificationAction {
+  SUBMITTED
+  APPROVED
+  REJECTED
+  SUSPENDED
+  REINSTATED
+}
+
+model User {
+  id               String            @id @default(cuid())
+  email            String            @unique
+  passwordHash     String
+  name             String
+  role             Role              @default(STUDENT)
+  isActive         Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  messes           Mess[]
+  reviews          Review[]
+  dishRatings      DishRating[]
+  crowdReports     CrowdReport[]
+  checkIns         CheckIn[]
+  favourites       Favourite[]
+  verificationLogs VerificationLog[]
+
+  @@index([role])
+}
+
+model Mess {
+  id               String            @id @default(cuid())
+  ownerId          String
+  owner            User              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name             String
+  slug             String            @unique
+  description      String?
+  address          String
+  latitude         Float
+  longitude        Float
+  phone            String?
+  foodType         FoodType          @default(VEG)
+  avgMealPrice     Int
+  seatingCapacity  Int               @default(30)
+  opensAt          String            @default("11:00")
+  closesAt         String            @default("21:00")
+  isOpen           Boolean           @default(true)
+  photoUrl         String?
+  qrToken          String            @unique
+  status           MessStatus        @default(PENDING)
+  isSample         Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  menuItems        MenuItem[]
+  dailyMenus       DailyMenu[]
+  reviews          Review[]
+  crowdReports     CrowdReport[]
+  checkIns         CheckIn[]
+  favourites       Favourite[]
+  verificationLogs VerificationLog[]
+
+  @@index([status])
+  @@index([ownerId])
+  @@index([latitude, longitude])
+}
+
+model MenuItem {
+  id             String          @id @default(cuid())
+  messId         String
+  mess           Mess            @relation(fields: [messId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?
+  category       DishCategory    @default(SABJI)
+  price          Int
+  isVeg          Boolean         @default(true)
+  photoUrl       String?
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  dailyMenuItems DailyMenuItem[]
+  ratings        DishRating[]
+
+  @@unique([messId, name])
+  @@index([messId])
+}
+
+model DailyMenu {
+  id        String          @id @default(cuid())
+  messId    String
+  mess      Mess            @relation(fields: [messId], references: [id], onDelete: Cascade)
+  date      DateTime        @db.Date
+  note      String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  items     DailyMenuItem[]
+
+  @@unique([messId, date])
+  @@index([date])
+}
+
+model DailyMenuItem {
+  id            String    @id @default(cuid())
+  dailyMenuId   String
+  dailyMenu     DailyMenu @relation(fields: [dailyMenuId], references: [id], onDelete: Cascade)
+  menuItemId    String
+  menuItem      MenuItem  @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  isAvailable   Boolean   @default(true)
+  priceOverride Int?
+
+  @@unique([dailyMenuId, menuItemId])
+  @@index([menuItemId])
+}
+
+model DishRating {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, menuItemId])
+  @@index([menuItemId])
+}
+
+model Review {
+  id            String       @id @default(cuid())
+  userId        String
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messId        String
+  mess          Mess         @relation(fields: [messId], references: [id], onDelete: Cascade)
+  rating        Int
+  hygieneRating Int
+  valueRating   Int
+  comment       String?
+  status        ReviewStatus @default(VISIBLE)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@unique([userId, messId])
+  @@index([messId, status])
+}
+
+model CrowdReport {
+  id        String      @id @default(cuid())
+  messId    String
+  mess      Mess        @relation(fields: [messId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  source    CrowdSource
+  level     CrowdLevel
+  createdAt DateTime    @default(now())
+  expiresAt DateTime
+
+  @@index([messId, createdAt])
+  @@index([expiresAt])
+  @@index([userId, messId, createdAt])
+}
+
+model CheckIn {
+  id          String   @id @default(cuid())
+  messId      String
+  mess        Mess     @relation(fields: [messId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  latitude    Float?
+  longitude   Float?
+  geoVerified Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([messId, createdAt])
+  @@index([userId, messId, createdAt])
+}
+
+model Favourite {
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messId    String
+  mess      Mess     @relation(fields: [messId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([userId, messId])
+  @@index([messId])
+}
+
+model VerificationLog {
+  id        String             @id @default(cuid())
+  messId    String
+  mess      Mess               @relation(fields: [messId], references: [id], onDelete: Cascade)
+  actorId   String
+  actor     User               @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  action    VerificationAction
+  note      String?
+  createdAt DateTime           @default(now())
+
+  @@index([messId, createdAt])
+}
