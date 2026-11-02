@@ -22,8 +22,19 @@ export function createApp() {
 
   app.use('/uploads', express.static(path.resolve(config.UPLOAD_DIR), { maxAge: '7d', index: false }));
 
+  // Liveness: confirms the API process is running without depending on external services.
   app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', time: new Date().toISOString() });
+  });
+
+  // Readiness: checks whether PostgreSQL is reachable before serving database-backed requests.
+  app.get('/api/health/ready', async (_req, res) => {
+    try {
+      await prisma.$queryRaw`SELECT 1`;
+      res.json({ status: 'ready', database: 'connected', time: new Date().toISOString() });
+    } catch {
+      res.status(503).json({ status: 'not_ready', database: 'unavailable', time: new Date().toISOString() });
+    }
   });
   app.use('/api/auth', authRouter);
   app.use('/api/messes', messRouter);
