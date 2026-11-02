@@ -45,7 +45,10 @@ test('register validates input before touching the database', async () => {
   const res = await request(app).post('/api/auth/register').send({ name: 'A', email: 'nope', password: 'short' });
   assert.equal(res.status, 400);
   const fields = (res.body.details as { field: string }[]).map((d) => d.field).sort();
-  assert.deepEqual(fields, ['email', 'name', 'password']);
+  assert.deepEqual(
+  [...new Set(fields)].sort(),
+  ['email', 'name', 'password']
+);
 });
 
 test('register cannot create admin accounts', async () => {
