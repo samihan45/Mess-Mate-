@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'node:path';
 import { config } from './config.js';
+import { prisma } from './db.js';
 import { errorHandler, notFound } from './http.js';
 import { authRouter } from './routes/auth.js';
 import { messRouter } from './routes/messes.js';
