@@ -21,6 +21,7 @@ export default function Messes() {
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
     else next.delete(key);
+    if (key !== 'page') next.set('page', '1');
     setParams(next, { replace: true });
   };
   const get = (k: string) => params.get(k) ?? '';
