@@ -27,10 +27,12 @@ export default function Messes() {
 
   const apiQuery = new URLSearchParams({ lat: String(origin.lat), lng: String(origin.lng) });
   for (const k of ['q', 'maxPrice', 'foodType', 'crowd', 'openOnly', 'sort']) if (params.get(k)) apiQuery.set(k, params.get(k)!);
+  apiQuery.set('page', params.get('page') ?? '1');
+  apiQuery.set('pageSize', '12');
 
   const q = useQuery({
     queryKey: ['messes', 'list', apiQuery.toString()],
-    queryFn: () => api<{ messes: Mess[] }>(`/messes?${apiQuery}`),
+    queryFn: () => api<{ messes: Mess[]; pagination: { page: number; pageSize: number; total: number; totalPages: number; hasNextPage: boolean; hasPreviousPage: boolean } }>(`/messes?${apiQuery}`),
     refetchInterval: 60_000,
     placeholderData: (prev) => prev,
   });
@@ -103,7 +105,7 @@ export default function Messes() {
       <section aria-live="polite">
         <div className="mb-4 flex items-center justify-between gap-3">
           <h1 className="text-2xl font-bold">
-            {q.data ? `${q.data.messes.length} mess${q.data.messes.length === 1 ? '' : 'es'}` : 'Messes'}
+            {q.data ? `${q.data.pagination.total} mess${q.data.pagination.total === 1 ? '' : 'es'}` : 'Messes'}
             {get('q') && <span className="font-medium text-muted"> for “{get('q')}”</span>}
           </h1>
           <div className="inline-flex rounded-xl border border-line bg-white p-1" role="group" aria-label="View">
@@ -132,6 +134,28 @@ export default function Messes() {
           <Suspense fallback={<Spinner label="Loading map" />}>
             <MessMap messes={q.data.messes} center={origin.source === 'device' ? origin : undefined} />
           </Suspense>
+        )}
+
+        {q.data && q.data.pagination.totalPages > 1 && view === 'list' && (
+          <nav className="mt-6 flex items-center justify-between gap-3" aria-label="Mess list pages">
+            <button
+              className="btn-quiet"
+              disabled={!q.data.pagination.hasPreviousPage}
+              onClick={() => set('page', String(q.data!.pagination.page - 1))}
+            >
+              Previous
+            </button>
+            <span className="text-sm text-muted">
+              Page {q.data.pagination.page} of {q.data.pagination.totalPages}
+            </span>
+            <button
+              className="btn-quiet"
+              disabled={!q.data.pagination.hasNextPage}
+              onClick={() => set('page', String(q.data!.pagination.page + 1))}
+            >
+              Next
+            </button>
+          </nav>
         )}
       </section>
     </div>
