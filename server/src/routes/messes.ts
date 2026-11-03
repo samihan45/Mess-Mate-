@@ -24,6 +24,8 @@ const listQuery = z.object({
   lat: z.coerce.number().min(-90).max(90).optional(),
   lng: z.coerce.number().min(-180).max(180).optional(),
   sort: z.enum(['distance', 'rating', 'price', 'crowd']).optional(),
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(50).default(12),
 });
 
 messRouter.get(
@@ -32,8 +34,8 @@ messRouter.get(
   validate({ query: listQuery }),
   asyncHandler(async (req, res) => {
     const q = req.query as unknown as z.infer<typeof listQuery>;
-    const messes = await listMesses({ ...q, userId: req.user?.id });
-    res.json({ messes, generatedAt: new Date().toISOString() });
+    const result = await listMesses({ ...q, userId: req.user?.id });
+    res.json({ ...result, generatedAt: new Date().toISOString() });
   }),
 );
 

@@ -24,12 +24,27 @@ export async function getCrowdMap(
     }),
   ]);
 
+  const reportsByMess = new Map<string, typeof reports>();
+  const checkInsByMess = new Map<string, typeof checkIns>();
+
+  for (const report of reports) {
+    const items = reportsByMess.get(report.messId) ?? [];
+    items.push(report);
+    reportsByMess.set(report.messId, items);
+  }
+
+  for (const checkIn of checkIns) {
+    const items = checkInsByMess.get(checkIn.messId) ?? [];
+    items.push(checkIn);
+    checkInsByMess.set(checkIn.messId, items);
+  }
+
   for (const m of messes) {
     out.set(
       m.id,
       estimateCrowd({
-        reports: reports.filter((r) => r.messId === m.id),
-        checkIns: checkIns.filter((c) => c.messId === m.id),
+        reports: reportsByMess.get(m.id) ?? [],
+        checkIns: checkInsByMess.get(m.id) ?? [],
         seatingCapacity: m.seatingCapacity,
         now,
       }),

@@ -52,6 +52,8 @@ export interface ListParams {
   sort?: 'distance' | 'rating' | 'price' | 'crowd';
   favouritesOf?: string;
   userId?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 const round1 = (n: number | null | undefined) => (n == null ? null : Math.round(n * 10) / 10);
@@ -169,7 +171,23 @@ export async function listMesses(p: ListParams) {
         return (b.rating.avg ?? -1) - (a.rating.avg ?? -1) || b.rating.count - a.rating.count;
     }
   });
-  return out;
+  const page = p.page ?? 1;
+  const pageSize = p.pageSize ?? 12;
+  const total = out.length;
+  const totalPages = Math.ceil(total / pageSize);
+  const startIndex = (page - 1) * pageSize;
+
+  return {
+    messes: out.slice(startIndex, startIndex + pageSize),
+    pagination: {
+      page,
+      pageSize,
+      total,
+      totalPages,
+      hasNextPage: page < totalPages,
+      hasPreviousPage: page > 1,
+    },
+  };
 }
 
 export async function dishRatingMap(menuItemIds: string[]) {
