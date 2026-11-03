@@ -1,83 +1,176 @@
-# MessMate
+# 🍽️ MessMate
 
-Real-time food discovery for college messes. Students see **today's sabji and menu, an honest crowd estimate, price, ratings and distance**. Owners post menus and rush updates. Admins verify messes.
-Launch area: DY Patil College, Akurdi, Pune.
+<p align="center">
+  <strong>Find good food. Skip the guesswork.</strong><br/>
+  A real-time food discovery platform built for students around DY Patil College of Engineering, Akurdi, Pune.
+</p>
 
-> **Honesty rule:** crowd levels are *estimates* from student reports, location-verified QR check-ins and owner updates. They expire automatically, show their last-updated time, and say "No recent reports" when there is no fresh evidence. See [docs/CROWD_ALGORITHM.md](docs/CROWD_ALGORITHM.md). Seed data is clearly labelled sample data and contains no ratings, check-ins or crowd reports.
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=nodedotjs&logoColor=white" />
+  <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?logo=postgresql&logoColor=white" />
+  <img alt="Prisma" src="https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white" />
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
+</p>
 
-## Features
-- Student: search by mess or dish, filter by budget / crowd / veg / open, sort, list or map, dish ratings, reviews (food, hygiene, value), crowd reports, QR check-in, favourites.
-- Owner: mess profile (with photo), dish library with photos, daily menu with sold-out marking, crowd updates, printable QR code.
-- Admin: approve / reject / suspend messes, deactivate users, hide reviews. Every decision is logged.
-- Live updates over Socket.IO; background sweeper expires stale crowd data.
+---
 
-## Screenshots
-_Add screenshots here after your first run (`docs/screenshots/home.png`, `mess.png`, `owner.png`)._
+## The problem
+
+When students head out for lunch, the questions are familiar: *Where can I get a good sabji? What is on the menu today? Is it affordable? Is the place crowded?*
+
+MessMate brings local messes into one place so students can compare menus, prices, distance and recent crowd information before they leave.
+
+## What you can do
+
+| For students | For mess owners | For admins |
+|---|---|---|
+| Search by mess or dish | Manage mess profile and photos | Approve, reject or suspend listings |
+| Filter by budget, food type, crowd and open status | Maintain a reusable dish library | Deactivate users and moderate reviews |
+| Browse list and map views | Publish daily menus and mark items sold out | Review moderation actions |
+| Rate dishes and write reviews | Share crowd updates | Keep the directory trustworthy |
+| Submit crowd reports and QR check-ins | Generate printable check-in QR codes | |
+
+### Highlights
+
+- **Daily menus:** See dishes and prices in one place.
+- **Crowd awareness:** Crowd estimates use student reports, location-verified QR check-ins and owner updates.
+- **Freshness matters:** Crowd information expires automatically and displays its last-updated time.
+- **Live updates:** Socket.IO broadcasts relevant changes without requiring a page refresh.
+- **Safer interactions:** Role-based access, request validation, rate limiting and moderation controls.
+
+## Product preview
+
+> Screenshots coming soon. Add real screenshots from your running app in `docs/screenshots/` and replace this section with them.
+
+Suggested screenshots:
+- `docs/screenshots/student-discovery.png` — discovery page with filters and map/list view
+- `docs/screenshots/mess-details.png` — mess details and today's menu
+- `docs/screenshots/owner-dashboard.png` — owner menu management
+- `docs/screenshots/admin-dashboard.png` — listing moderation
+
+## Tech stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | React 18, TypeScript, Vite, Tailwind CSS |
+| Data fetching | TanStack Query |
+| Maps | Leaflet, React Leaflet, OpenStreetMap |
+| Backend | Node.js, Express, TypeScript |
+| Database | PostgreSQL, Prisma ORM |
+| Authentication & validation | JWT, bcrypt, Zod |
+| Real-time | Socket.IO |
+| Testing | Vitest, Node.js test runner |
 
 ## Architecture
-```
-client/  React 18 + TypeScript + Vite + Tailwind, TanStack Query, Leaflet/OSM, socket.io-client
-server/  Express + TypeScript, Prisma (PostgreSQL), JWT, zod validation, Socket.IO
-  src/lib/crowd.ts      pure crowd estimator (unit tested)
-  src/routes/*          auth, messes, dishes, checkins, favourites, owner, admin
-  src/services/*        crowd + mess queries, background sweeper
-  prisma/               schema, migrations, seed
-docs/    API.md, CROWD_ALGORITHM.md
-```
-A single modular API plus a SPA. No microservices.
 
-## Setup
-Requirements: Node 20+ (22 recommended), PostgreSQL 14+ (or Docker).
+```text
+MessMate/
+├── client/                 # React + TypeScript application
+├── server/
+│   ├── src/
+│   │   ├── routes/         # Auth, messes, dishes, check-ins, owner, admin
+│   │   ├── services/       # Mess and crowd business logic
+│   │   └── lib/            # Shared utilities and crowd estimator
+│   └── prisma/             # Schema, migrations and seed scripts
+├── docs/                   # API and engineering documentation
+└── docker-compose.yml      # Local PostgreSQL
+```
+
+The application uses a modular Express API and a React single-page application backed by PostgreSQL. It is intentionally a straightforward modular architecture rather than a collection of unnecessary microservices.
+
+## Run locally
+
+### Prerequisites
+
+- Node.js 20 or later
+- npm
+- PostgreSQL 14 or later, or Docker
+
+### 1. Clone and install
+
 ```bash
+git clone https://github.com/samihan45/Mess-Mate-.git
+cd Mess-Mate-
 npm install
-docker compose up -d db                  # local Postgres; skip if you have your own
-cp .env.example server/.env              # then set JWT_SECRET (see below)
+```
+
+### 2. Configure the database and environment
+
+Start the local database if you use Docker:
+
+```bash
+docker compose up -d db
+```
+
+Create the server environment file:
+
+```bash
+cp .env.example server/.env
+```
+
+Set at least `DATABASE_URL` and a strong `JWT_SECRET` in `server/.env`. Never commit real credentials.
+
+Generate a JWT secret:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
+
+### 3. Prepare the database
+
+```bash
 npm run db:generate
-npm run db:deploy                        # apply migrations
-npm run db:seed                          # sample messes + admin/owner accounts (passwords printed once)
-npm run dev                              # API :4000, web :5173
+npm run db:deploy
+npm run db:seed
 ```
-Generate a secret: `node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"`
 
-### Environment variables (`server/.env`)
-| Var | Purpose |
-|---|---|
-| DATABASE_URL | PostgreSQL connection string |
-| JWT_SECRET | 32+ chars, required |
-| CLIENT_URL / PUBLIC_APP_URL | Allowed browser origin(s) / base URL inside QR codes |
-| UPLOAD_DIR | Image folder (local disk) |
-| CHECKIN_MAX_DISTANCE_M | Check-in geofence radius, default 300 |
-| ADMIN_EMAIL, ADMIN_PASSWORD, SEED_DEMO_PASSWORD | Seed only. Blank password = random, printed once |
+### 4. Start the application
 
-Client (`client/.env`, optional): `VITE_API_URL`, `VITE_CAMPUS_LAT`, `VITE_CAMPUS_LNG` (campus coordinates default to an approximation; verify and adjust).
-
-### Trying the flows
-1. Sign in as the printed admin, then open **Admin**.
-2. Register a student in another browser; open a sample mess; report crowd; rate a dish.
-3. Register an owner, add a mess, approve it as admin, build today's menu, print the QR.
-4. Sample menus are for the day you seed. Re-run `npm run db:seed` to refresh them.
-
-## Tests
 ```bash
-npm test                      # server (node:test) + client (vitest)
+npm run dev
 ```
-Server tests: crowd algorithm, geo/date helpers, API auth/validation gates (need generated Prisma client, not a running DB). Client tests: format helpers and crowd components.
 
-## Deployment
-- **Database:** any managed PostgreSQL (Neon, Supabase, Render, RDS).
-- **API:** `server/Dockerfile` (applies migrations on start). Set `DATABASE_URL`, `JWT_SECRET`, `CLIENT_URL`, `PUBLIC_APP_URL`. Uploads use local disk, so mount a persistent volume or move to S3/R2 before running multiple instances. Socket.IO needs sticky sessions if you scale horizontally.
-- **Client:** `npm run build -w client`, host `client/dist` on any static host with SPA fallback to `index.html`; set `VITE_API_URL` at build time. Alternatively serve client and API on one domain behind a reverse proxy routing `/api`, `/uploads`, `/socket.io`.
-- `render.yaml` is a ready blueprint for Render.com.
+The client runs at `http://localhost:5173` and the API runs at `http://localhost:4000` by default.
 
-## Security notes
-bcrypt (cost 12) passwords, JWT with expiry, role checks on every protected route, zod validation, helmet, CORS allow-list, rate limits on auth and writes, upload type/size limits, no secrets in the repo.
+## Tests and production build
 
-## Publishing to GitHub
+Run the test suites:
+
 ```bash
-git init -b main && git add . && git commit -m "Initial commit: MessMate MVP"
-git remote add origin git@github.com:<you>/messmate.git
-git push -u origin main
+npm test
 ```
+
+Build both applications:
+
+```bash
+npm run build
+```
+
+## Data accuracy and demo limitations
+
+MessMate is being developed for a local student community. Seeded/candidate listings, estimated menus and prices, and representative food imagery are **illustrative demo content**. They should not be treated as verified current business information.
+
+Crowd levels are estimates based on available reports and check-ins, not guaranteed live headcounts. When recent evidence is unavailable, the app should communicate that clearly rather than inventing activity.
+
+## Engineering notes
+
+- [Crowd estimation logic](docs/CROWD_ALGORITHM.md)
+- [API documentation](docs/API.md)
+
+## Roadmap
+
+- [ ] Capture polished screenshots and publish a hosted demo
+- [ ] Onboard mess owners and verify real menus and prices
+- [ ] Collect real student feedback and improve crowd estimates
+- [ ] Expand automated API, integration and end-to-end test coverage
+- [ ] Add production monitoring, backups and managed image storage
+
+## Contributing
+
+Suggestions and bug reports are welcome. Open an issue with steps to reproduce a problem or a clear description of the improvement.
 
 ## License
-MIT
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
