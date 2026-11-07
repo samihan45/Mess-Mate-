@@ -1,4 +1,4 @@
-<!--
+ <!--
   MessMate README
   Product documentation is intentionally limited to behavior verified in this repository.
 -->
