@@ -12,7 +12,7 @@
         <p><font color="#F5F0E4"><strong>Find good food. Skip the guesswork.</strong></font></p>
         <p><font color="#F5F0E4">A practical way for college students to discover nearby messes, check today's menu and make a better lunch decision.</font></p>
         <br />
-      </td>
+      </td> 
     </tr>
   </table>
   <p>
