@@ -42,13 +42,33 @@ MessMate brings local messes into one place so students can compare menus, price
 
 ## Product preview
 
-> Screenshots coming soon. Add real screenshots from your running app in `docs/screenshots/` and replace this section with them.
+<p align="center">
+  <img src="docs/screenshots/student-home.png" alt="MessMate student home dashboard" width="100%" />
+  <br/>
+  <strong>Student home</strong> · Today's food options and quick discovery
+</p>
 
-Suggested screenshots:
-- `docs/screenshots/student-discovery.png` — discovery page with filters and map/list view
-- `docs/screenshots/mess-details.png` — mess details and today's menu
-- `docs/screenshots/owner-dashboard.png` — owner menu management
-- `docs/screenshots/admin-dashboard.png` — listing moderation
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/discovery-list.png" alt="MessMate mess discovery list" width="100%" />
+      <br/><strong>Mess discovery</strong>
+      <br/><sub>Browse nearby messes and compare options</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/discovery-map.png" alt="MessMate map discovery" width="100%" />
+      <br/><strong>Map view</strong>
+      <br/><sub>Explore mess locations around you</sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="docs/screenshots/crowd-radar.png" alt="MessMate live crowd radar" width="82%" />
+      <br/><strong>Crowd radar</strong>
+      <br/><sub>Check crowd activity before heading out</sub>
+    </td>
+  </tr>
+</table>
 
 ## Tech stack
 
