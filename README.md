@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/messmate-banner.svg" alt="MessMate — Find good food. Skip the guesswork." width="100%" />
+</p>
+
 # 🍽️ MessMate
 
 <p align="center">
