@@ -16,7 +16,7 @@ const AdminPanel = lazy(() => import('./pages/admin/AdminPanel'));
 
 export default function App() {
   return (
-    <Suspense fallback={<div className="p-6"><Spinner /></div>}>
+    <Suspense fallback={<div className="p-6" role="status" aria-label="Loading page content"><Spinner /></div>}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
