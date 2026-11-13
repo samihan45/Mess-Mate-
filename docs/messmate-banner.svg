@@ -1,63 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
-<title id="title">MessMate — Find good food. Skip the guesswork.</title>
-<desc id="desc">A modern green and cream banner for a student food discovery platform, with a food bowl illustration and floating discovery, menu and crowd cards.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620" role="img" aria-labelledby="title desc">
+<title id="title">MessMate — Discover your next meal</title>
+<desc id="desc">A student-focused mess discovery app banner showing a mobile app interface with nearby mess listings, food menu cards, map pins and crowd status.</desc>
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102d24"/><stop offset="1" stop-color="#1c4937"/></linearGradient>
-  <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8f47a"/><stop offset="1" stop-color="#a8d94f"/></linearGradient>
-  <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff5df"/><stop offset="1" stop-color="#e8d7b8"/></linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#061a13" flood-opacity=".28"/></filter>
-  <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#d8f47a" opacity=".18"/></pattern>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102b22"/><stop offset=".58" stop-color="#174432"/><stop offset="1" stop-color="#24563d"/></linearGradient>
+  <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0f58b"/><stop offset="1" stop-color="#a9dc56"/></linearGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf6"/><stop offset="1" stop-color="#f3f4e9"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#071b12" flood-opacity=".38"/></filter>
+  <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#d8efb2" stroke-opacity=".055"/></pattern>
 </defs>
-<rect width="1600" height="520" rx="34" fill="url(#bg)"/>
-<rect width="1600" height="520" rx="34" fill="url(#dots)"/>
-<circle cx="1290" cy="240" r="250" fill="#b6df64" opacity=".07"/>
-<circle cx="1420" cy="90" r="170" fill="#fff4d8" opacity=".035"/>
-<path d="M0 430 C260 350 420 570 720 460 S1220 350 1600 455 V520 H0Z" fill="#0b211a" opacity=".22"/>
-<g transform="translate(112 102)">
-  <rect x="0" y="0" width="68" height="68" rx="20" fill="url(#lime)"/>
-  <path d="M17 39 Q34 58 51 39 L46 49 Q34 61 22 49Z" fill="#173b2d"/>
-  <path d="M20 35 Q34 43 48 35" fill="none" stroke="#173b2d" stroke-width="4" stroke-linecap="round"/>
-  <path d="M27 25 Q22 18 28 13 M39 25 Q34 17 41 11" fill="none" stroke="#173b2d" stroke-width="3.5" stroke-linecap="round"/>
-  <text x="88" y="48" fill="#fff8e9" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">MessMate</text>
-  <rect x="2" y="105" width="94" height="5" rx="3" fill="#c9eb70"/>
-  <text x="0" y="177" fill="#d9f17e" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="3">YOUR FOOD. YOUR NEIGHBOURHOOD.</text>
-  <text x="0" y="240" fill="#fff8e9" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" letter-spacing="-1">Find good food.</text>
-  <text x="0" y="292" fill="#fff8e9" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" letter-spacing="-1">Skip the guesswork.</text>
-  <text x="2" y="348" fill="#d7e4d8" font-family="Arial, Helvetica, sans-serif" font-size="21">Discover local messes, explore daily menus</text>
-  <text x="2" y="379" fill="#d7e4d8" font-family="Arial, Helvetica, sans-serif" font-size="21">and check crowd updates before you go.</text>
+<rect width="1600" height="620" rx="34" fill="url(#bg)"/>
+<rect width="1600" height="620" rx="34" fill="url(#grid)"/>
+<circle cx="1350" cy="300" r="330" fill="#c6e87b" opacity=".055"/>
+<circle cx="1130" cy="70" r="170" fill="#fff4d6" opacity=".035"/>
+<g transform="translate(112 94)">
+  <rect x="0" y="0" width="58" height="58" rx="18" fill="url(#lime)"/>
+  <path d="M15 31h28l-4 13H19Z" fill="#173b2c"/>
+  <path d="M19 27q10-10 20 0" fill="none" stroke="#173b2c" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M23 20q-4-6 1-10m11 10q-4-6 1-10" fill="none" stroke="#173b2c" stroke-width="3" stroke-linecap="round"/>
+  <text x="76" y="43" fill="#fff9eb" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="800" letter-spacing="-1.8">MessMate</text>
+  <rect x="2" y="91" width="86" height="5" rx="3" fill="#c9ed75"/>
+  <text x="0" y="164" fill="#d9f18a" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="3">MADE FOR THE STUDENT LIFE</text>
+  <text x="0" y="235" fill="#fff9eb" font-family="Arial,Helvetica,sans-serif" font-size="55" font-weight="800" letter-spacing="-2">Hungry?</text>
+  <text x="0" y="300" fill="#fff9eb" font-family="Arial,Helvetica,sans-serif" font-size="55" font-weight="800" letter-spacing="-2">Find your mess.</text>
+  <text x="2" y="355" fill="#dce8d9" font-family="Arial,Helvetica,sans-serif" font-size="22">Explore nearby messes, check today's menu,</text>
+  <text x="2" y="389" fill="#dce8d9" font-family="Arial,Helvetica,sans-serif" font-size="22">compare prices and beat the lunch rush.</text>
+  <g transform="translate(0 438)">
+    <rect width="192" height="48" rx="24" fill="url(#lime)"/>
+    <text x="96" y="31" text-anchor="middle" fill="#173b2c" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="800" letter-spacing=".5">DISCOVER • EAT • REPEAT</text>
+  </g>
 </g>
-<g filter="url(#shadow)" transform="translate(920 74)">
-  <rect x="82" y="26" width="390" height="350" rx="28" fill="#fffaf0"/>
-  <rect x="108" y="52" width="338" height="42" rx="13" fill="#f0f3e8"/>
-  <circle cx="130" cy="73" r="7" fill="#a7d75b"/>
-  <rect x="147" y="67" width="135" height="11" rx="6" fill="#b7c4ad"/>
-  <rect x="108" y="118" width="338" height="136" rx="20" fill="#e9f0df"/>
-  <circle cx="278" cy="183" r="54" fill="#fffaf0"/>
-  <path d="M226 180 Q278 244 330 180 Q323 229 278 236 Q233 229 226 180Z" fill="#e7c99b"/>
-  <ellipse cx="278" cy="177" rx="53" ry="30" fill="#f5e7c8"/>
-  <circle cx="253" cy="172" r="10" fill="#e6a83c"/><circle cx="283" cy="160" r="11" fill="#6e9d4e"/><circle cx="303" cy="179" r="9" fill="#d86d43"/><path d="M262 190 Q276 174 290 190" fill="none" stroke="#8a5734" stroke-width="5" stroke-linecap="round"/>
-  <rect x="108" y="274" width="190" height="15" rx="7" fill="#264b38"/>
-  <rect x="108" y="300" width="250" height="9" rx="5" fill="#d3ddca"/>
-  <rect x="108" y="324" width="112" height="28" rx="14" fill="#d8efaa"/>
-  <text x="164" y="343" text-anchor="middle" fill="#24452f" font-family="Arial, sans-serif" font-size="12" font-weight="700">VIEW MENU</text>
+<!-- Phone app screen -->
+<g filter="url(#shadow)" transform="translate(810 42)">
+  <rect x="0" y="0" width="345" height="536" rx="38" fill="#10241b" stroke="#a9c79b" stroke-opacity=".45" stroke-width="2"/>
+  <rect x="12" y="12" width="321" height="512" rx="29" fill="url(#screen)"/>
+  <rect x="126" y="20" width="94" height="12" rx="6" fill="#1a3025"/>
+  <text x="34" y="66" fill="#234532" font-family="Arial,sans-serif" font-size="14" font-weight="700">Good afternoon 👋</text>
+  <text x="34" y="94" fill="#173b2b" font-family="Arial,sans-serif" font-size="23" font-weight="800">What's for lunch?</text>
+  <rect x="28" y="111" width="289" height="42" rx="13" fill="#edf1e6" stroke="#dce5d4"/>
+  <circle cx="49" cy="132" r="7" fill="none" stroke="#738875" stroke-width="2"/>
+  <path d="M54 137l5 5" stroke="#738875" stroke-width="2" stroke-linecap="round"/>
+  <text x="70" y="137" fill="#839083" font-family="Arial,sans-serif" font-size="12">Search messes or dishes...</text>
+  <text x="29" y="182" fill="#244833" font-family="Arial,sans-serif" font-size="14" font-weight="800">Near your campus</text>
+  <text x="316" y="182" text-anchor="end" fill="#6b8c4b" font-family="Arial,sans-serif" font-size="11" font-weight="700">VIEW ALL</text>
+  <rect x="28" y="195" width="289" height="105" rx="16" fill="#fff" stroke="#e5e9df"/>
+  <rect x="39" y="206" width="83" height="82" rx="12" fill="#e8efda"/>
+  <circle cx="80" cy="247" r="27" fill="#fff4d9"/>
+  <ellipse cx="80" cy="249" rx="22" ry="13" fill="#e5bb70"/>
+  <circle cx="70" cy="246" r="5" fill="#6c9b4d"/><circle cx="86" cy="242" r="5" fill="#d86d43"/><circle cx="87" cy="254" r="4" fill="#f0d16a"/>
+  <text x="135" y="222" fill="#244833" font-family="Arial,sans-serif" font-size="13" font-weight="800">Campus Meals</text>
+  <text x="135" y="242" fill="#879184" font-family="Arial,sans-serif" font-size="10">Homely • Veg options</text>
+  <text x="135" y="263" fill="#31583d" font-family="Arial,sans-serif" font-size="12" font-weight="700">₹70–₹100</text>
+  <rect x="135" y="273" width="72" height="16" rx="8" fill="#e5f2d2"/>
+  <circle cx="145" cy="281" r="3" fill="#75a94a"/><text x="153" y="285" fill="#527b3b" font-family="Arial,sans-serif" font-size="8" font-weight="700">LESS BUSY</text>
+  <rect x="28" y="310" width="289" height="94" rx="16" fill="#fff" stroke="#e5e9df"/>
+  <rect x="39" y="320" width="83" height="74" rx="12" fill="#f2e7d5"/>
+  <ellipse cx="80" cy="359" rx="29" ry="19" fill="#fff9ed"/>
+  <path d="M56 359q24 24 48 0" fill="#e1bd7b"/>
+  <circle cx="68" cy="354" r="5" fill="#6c9b4d"/><circle cx="87" cy="350" r="5" fill="#d86d43"/>
+  <text x="135" y="337" fill="#244833" font-family="Arial,sans-serif" font-size="13" font-weight="800">Aai's Kitchen</text>
+  <text x="135" y="357" fill="#879184" font-family="Arial,sans-serif" font-size="10">Thali • Fresh menu</text>
+  <text x="135" y="380" fill="#31583d" font-family="Arial,sans-serif" font-size="12" font-weight="700">₹80 onwards</text>
+  <text x="29" y="434" fill="#244833" font-family="Arial,sans-serif" font-size="14" font-weight="800">Explore around you</text>
+  <rect x="28" y="447" width="289" height="64" rx="14" fill="#e4edda"/>
+  <path d="M28 484l55-28 47 25 52-27 50 24 85-20v53H28Z" fill="#d0e1c1"/>
+  <path d="M28 472l55-28 47 25 52-27 50 24 85-20" fill="none" stroke="#aac69b" stroke-width="2"/>
+  <path d="M100 462l-9 17h18Z" fill="#4b8c51"/><circle cx="100" cy="460" r="7" fill="#4b8c51" stroke="#fff" stroke-width="3"/>
+  <path d="M226 465l-9 17h18Z" fill="#e18b45"/><circle cx="226" cy="463" r="7" fill="#e18b45" stroke="#fff" stroke-width="3"/>
 </g>
-<g filter="url(#shadow)" transform="translate(1235 82) rotate(5)">
-  <rect width="245" height="116" rx="22" fill="#fffaf0"/>
-  <circle cx="34" cy="36" r="15" fill="#dff0b7"/>
-  <path d="M34 27 L34 45 M25 36 L43 36" stroke="#47723d" stroke-width="3" stroke-linecap="round"/>
-  <text x="60" y="40" fill="#254532" font-family="Arial, sans-serif" font-size="17" font-weight="700">Nearby messes</text>
-  <text x="26" y="78" fill="#6c7c6d" font-family="Arial, sans-serif" font-size="13">Explore places around you</text>
-  <rect x="26" y="91" width="130" height="6" rx="3" fill="#d8e4cf"/>
+<!-- Floating discovery chips -->
+<g filter="url(#shadow)" transform="translate(1190 132) rotate(4)">
+  <rect width="278" height="112" rx="22" fill="#fffaf0"/>
+  <circle cx="37" cy="36" r="17" fill="#e5f2d2"/>
+  <path d="M37 24v24M25 36h24" stroke="#527c3e" stroke-width="3" stroke-linecap="round"/>
+  <text x="67" y="40" fill="#234532" font-family="Arial,sans-serif" font-size="18" font-weight="800">Daily menus</text>
+  <text x="27" y="78" fill="#788777" font-family="Arial,sans-serif" font-size="13">Know what's cooking today</text>
 </g>
-<g filter="url(#shadow)" transform="translate(1260 332) rotate(-5)">
-  <rect width="245" height="112" rx="22" fill="#fffaf0"/>
-  <circle cx="35" cy="35" r="15" fill="#ffe5bd"/>
-  <path d="M35 25 L35 35 L42 40" fill="none" stroke="#a86c25" stroke-width="2.5" stroke-linecap="round"/>
-  <text x="60" y="40" fill="#254532" font-family="Arial, sans-serif" font-size="17" font-weight="700">Crowd updates</text>
-  <text x="26" y="77" fill="#6c7c6d" font-family="Arial, sans-serif" font-size="13">Know before you head out</text>
-  <rect x="26" y="91" width="130" height="6" rx="3" fill="#d8e4cf"/>
+<g filter="url(#shadow)" transform="translate(1198 375) rotate(-4)">
+  <rect width="278" height="112" rx="22" fill="#fffaf0"/>
+  <circle cx="37" cy="36" r="17" fill="#ffebd2"/>
+  <path d="M37 24c-8 0-13 6-13 13 0 10 13 21 13 21s13-11 13-21c0-7-5-13-13-13Z" fill="#e38c48"/>
+  <circle cx="37" cy="37" r="4" fill="#fff7e8"/>
+  <text x="67" y="40" fill="#234532" font-family="Arial,sans-serif" font-size="18" font-weight="800">Nearby discovery</text>
+  <text x="27" y="78" fill="#788777" font-family="Arial,sans-serif" font-size="13">Find food around campus</text>
 </g>
-<g transform="translate(1000 425)" opacity=".9">
-  <circle cx="0" cy="0" r="7" fill="#d8f47a"/><circle cx="26" cy="0" r="7" fill="#d8f47a" opacity=".55"/><circle cx="52" cy="0" r="7" fill="#d8f47a" opacity=".3"/>
-</g>
+<text x="1160" y="552" fill="#d6e9c5" opacity=".75" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">DISCOVER LOCAL • EAT BETTER</text>
 </svg>
