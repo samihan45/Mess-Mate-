@@ -1,4 +1,4 @@
-import { useId, type ReactNode, type InputHTMLAttributes } from 'react';
+import { useId, type ReactNode, type InputHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { AlertTriangle, Loader2, Star } from 'lucide-react';
 
 export function Spinner({ label = 'Loading' }: { label?: string }) {
@@ -39,7 +39,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
       <AlertTriangle className="h-5 w-5 shrink-0 text-crowd-high" aria-hidden />
       <p className="flex-1 text-sm">{message}</p>
       {onRetry && (
-        <button className="btn-quiet" onClick={onRetry}>
+        <button type="button" className="btn-quiet" onClick={onRetry}>
           Try again
         </button>
       )}
@@ -70,12 +70,52 @@ export function SampleBadge() {
 
 export function Stars({ value, onChange, label }: { value: number | null; onChange?: (v: number) => void; label: string }) {
   const v = value ?? 0;
+
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>, current: number) => {
+    let next: number;
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        next = current === 5 ? 1 : current + 1;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        next = current === 1 ? 5 : current - 1;
+        break;
+      case 'Home':
+        next = 1;
+        break;
+      case 'End':
+        next = 5;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    onChange?.(next);
+    event.currentTarget.parentElement
+      ?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next - 1]
+      ?.focus();
+  };
+
   return (
     <span className="inline-flex items-center gap-0.5" role={onChange ? 'radiogroup' : 'img'} aria-label={`${label}: ${value ?? 'not rated'}${value ? ' out of 5' : ''}`}>
       {[1, 2, 3, 4, 5].map((n) => {
         const icon = <Star className={`h-4 w-4 ${n <= Math.round(v) ? 'fill-[#E0A106] text-[#E0A106]' : 'text-line'}`} aria-hidden />;
         return onChange ? (
-          <button key={n} type="button" role="radio" aria-checked={n === value} aria-label={`${n} star${n > 1 ? 's' : ''}`} onClick={() => onChange(n)} className="rounded p-0.5 hover:scale-110">
+          <button
+            key={n}
+            type="button"
+            role="radio"
+            aria-checked={n === value}
+            aria-label={`${n} star${n > 1 ? 's' : ''}`}
+            tabIndex={n === (value ?? 1) ? 0 : -1}
+            onClick={() => onChange(n)}
+            onKeyDown={(event) => handleKeyDown(event, n)}
+            className="rounded p-0.5 hover:scale-110"
+          >
             {icon}
           </button>
         ) : (
