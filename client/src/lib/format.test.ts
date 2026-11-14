@@ -17,6 +17,9 @@ const est = (over: Partial<CrowdEstimate> = {}): CrowdEstimate => ({
 describe('format helpers', () => {
   it('formats distance in metres and kilometres', () => {
     expect(formatDistance(null)).toBeNull();
+    expect(formatDistance(-1)).toBeNull();
+    expect(formatDistance(Number.NaN)).toBeNull();
+    expect(formatDistance(Number.POSITIVE_INFINITY)).toBeNull();
     expect(formatDistance(347)).toBe('350 m');
     expect(formatDistance(1520)).toBe('1.5 km');
   });
