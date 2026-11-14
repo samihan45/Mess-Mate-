@@ -10,7 +10,7 @@ export function formatDistance(m: number | null): string | null {
 export function timeAgo(iso: string | null, now: number = Date.now()): string {
   if (!iso) return '';
   const timestamp = new Date(iso).getTime();
-  if (!Number.isFinite(timestamp)) return '';
+  if (!Number.isFinite(timestamp) || !Number.isFinite(now)) return '';
   const sec = Math.max(0, Math.round((now - timestamp) / 1000));
   if (sec < 45) return 'just now';
   const min = Math.round(sec / 60);
