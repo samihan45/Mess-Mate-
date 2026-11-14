@@ -5,9 +5,7 @@
 
 <div align="center">
 
-# 🍽️ MessMate
-
-### Find good food. Skip the guesswork.
+<p align="center"><img src="assets/messmate-readme-banner.svg" alt="MessMate — discover nearby messes, compare menus and find food around campus" width="100%" /></p>
 
 Discover nearby college messes, explore today's menu, compare prices and check crowd estimates — all in one place.
 
