@@ -4,33 +4,51 @@
 -->
 
 <div align="center">
-  <table width="100%">
-    <tr>
-      <td align="center" bgcolor="#173F32">
-        <br />
-        <h1><font color="#F5F0E4">MessMate</font></h1>
-        <p><font color="#F5F0E4"><strong>Find good food. Skip the guesswork.</strong></font></p>
-        <p><font color="#F5F0E4">A practical way for college students to discover nearby messes, check today's menu and make a better lunch decision.</font></p>
-        <br />
-      </td> 
-    </tr>
-  </table>
-  <p>
-    <a href="#features">Features</a> &nbsp;·&nbsp;
-    <a href="#architecture">Architecture</a> &nbsp;·&nbsp;
-    <a href="#getting-started">Get started</a> &nbsp;·&nbsp;
-    <a href="#roadmap">Roadmap</a>
-  </p>
-  <p>
-    <img src="https://img.shields.io/badge/Node.js-20%2B-417D52?logo=nodedotjs&logoColor=white" alt="Node.js 20+" />
-    <img src="https://img.shields.io/badge/React-18-149ECA?logo=react&logoColor=white" alt="React 18" />
-    <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL" />
-    <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white" alt="Prisma ORM" />
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-557A58.svg" alt="MIT License" /></a>
-  </p>
-  <p><sub>Built around the everyday food-discovery problem near DY Patil College, Akurdi, Pune.</sub></p>
+
+# 🍽️ MessMate
+
+### Find good food. Skip the guesswork.
+
+Discover nearby college messes, explore today's menu, compare prices and check crowd estimates — all in one place.
+
+<p>
+  <a href="#features">✨ Features</a> &nbsp;·&nbsp;
+  <a href="#screenshots">📸 Screenshots</a> &nbsp;·&nbsp;
+  <a href="#architecture">🏗️ Architecture</a> &nbsp;·&nbsp;
+  <a href="#getting-started">🚀 Get started</a>
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Node.js-20%2B-417D52?logo=nodedotjs&logoColor=white" alt="Node.js 20+" />
+  <img src="https://img.shields.io/badge/React-18-149ECA?logo=react&logoColor=white" alt="React 18" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL 14+" />
+  <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white" alt="Prisma ORM" />
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-557A58.svg" alt="MIT License" /></a>
+</p>
+
+<sub>Made for the everyday food-discovery needs of students around DY Patil College, Akurdi, Pune.</sub>
+
 </div>
+
+---
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <strong>🔎 Discover</strong><br />
+      <sub>Find nearby messes, dishes and today's menus.</sub>
+    </td>
+    <td align="center" width="33%">
+      <strong>🧭 Decide</strong><br />
+      <sub>Compare prices, ratings, distance and crowd estimates.</sub>
+    </td>
+    <td align="center" width="33%">
+      <strong>⚡ Stay updated</strong><br />
+      <sub>Get crowd and menu changes as they happen.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -81,19 +99,11 @@ Crowd levels are estimates, not live occupancy counts. The estimator combines re
 
 ## Screenshots
 
-There are currently no application screenshots in the repository. The gallery below is a capture checklist, not a set of fabricated product images. Add real screenshots at these paths when they are available.
+Real application screenshots will be added here as the student, owner and admin views are captured. Rather than filling this gallery with stock photos or mockups, this README will show the actual product UI.
 
-| Screen | Screenshot |
-|---|---|
-| Student home and nearby mess summary | Screenshot placeholder: Student Home — `docs/screenshots/student-home.png` |
-| Search, filters and map/list results | Screenshot placeholder: Discovery — `docs/screenshots/discovery-map.png` |
-| Mess detail, today's menu and crowd estimate | Screenshot placeholder: Mess Detail — `docs/screenshots/mess-detail.png` |
-| Student QR check-in result | Screenshot placeholder: QR Check-in — `docs/screenshots/qr-checkin.png` |
-| Owner dashboard and listing status | Screenshot placeholder: Owner Dashboard — `docs/screenshots/owner-dashboard.png` |
-| Owner dish library and daily menu editor | Screenshot placeholder: Menu Editor — `docs/screenshots/menu-editor.png` |
-| Admin verification and moderation views | Screenshot placeholder: Admin Dashboard — `docs/screenshots/admin-dashboard.png` |
+**Planned gallery:** Student home · Discovery map · Mess details and menu · QR check-in · Owner dashboard · Admin dashboard.
 
-Capture the actual running application at a readable desktop or mobile viewport. Use real application data, and keep sample listings visibly identified as samples. Do not add stock food photography or mockups as product screenshots.
+> Want to help? Capture a current screen from the running app and open a PR with the image in `docs/screenshots/`. Keep sample listings clearly identified as samples.
 
 ## Technology
 
