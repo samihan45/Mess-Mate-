@@ -37,6 +37,9 @@ describe('format helpers', () => {
     expect(waitText(est())).toBe('About 5 to 15 min wait');
     expect(waitText(est({ waitMinutes: { min: 0, max: 5 } }))).toBe('Under 5 min wait');
     expect(waitText(est({ waitMinutes: null }))).toBeNull();
+    expect(waitText(est({ waitMinutes: { min: -1, max: 5 } }))).toBeNull();
+    expect(waitText(est({ waitMinutes: { min: 10, max: 5 } }))).toBeNull();
+    expect(waitText(est({ waitMinutes: { min: 5, max: Number.NaN } }))).toBeNull();
   });
 
   it('explains what an estimate is based on', () => {

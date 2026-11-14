@@ -25,6 +25,7 @@ export const CROWD_SEGMENTS: Record<CrowdLevel, number> = { LOW: 1, MODERATE: 2,
 export function waitText(c: CrowdEstimate | null): string | null {
   if (!c?.waitMinutes) return null;
   const { min, max } = c.waitMinutes;
+  if (!Number.isFinite(min) || !Number.isFinite(max) || min < 0 || max < min) return null;
   return min === 0 ? `Under ${max} min wait` : `About ${min} to ${max} min wait`;
 }
 
