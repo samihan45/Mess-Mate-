@@ -19,12 +19,21 @@ export interface Origin {
 
 const KEY = 'messmate.origin';
 
+function isValidOrigin(value: unknown): value is Origin {
+  if (!value || typeof value !== 'object') return false;
+  const point = value as Partial<Origin>;
+  return Number.isFinite(point.lat) && Number.isFinite(point.lng)
+    && point.lat! >= -90 && point.lat! <= 90
+    && point.lng! >= -180 && point.lng! <= 180
+    && (point.source === 'campus' || point.source === 'device');
+}
+
 function read(): Origin {
   try {
     const raw = localStorage.getItem(KEY);
     if (raw) {
-      const o = JSON.parse(raw) as Origin;
-      if (typeof o.lat === 'number' && typeof o.lng === 'number') return o;
+      const o: unknown = JSON.parse(raw);
+      if (isValidOrigin(o)) return o;
     }
   } catch {
     /* fall through */
