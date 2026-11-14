@@ -35,6 +35,12 @@ describe('crowd components never overclaim', () => {
     expect(text).toContain('not a head count');
   });
 
+  it('meter explains when estimate freshness and source details are missing', () => {
+    const { container } = render(<CrowdMeter crowd={{ ...base, lastUpdatedAt: null, basis: { studentReports: 0, ownerUpdate: false, checkIns: 0 } }} />);
+    expect(container.textContent).toContain('Estimate details are unavailable.');
+    expect(container.textContent).not.toContain('Updated  from .');
+  });
+
   it('meter without data refuses to guess', () => {
     const { container } = render(<CrowdMeter crowd={{ ...base, level: null, waitMinutes: null, lastUpdatedAt: null }} />);
     expect(container.textContent).toContain('we are not guessing');

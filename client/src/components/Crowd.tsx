@@ -32,6 +32,8 @@ export function CrowdBadge({ crowd }: { crowd: CrowdEstimate | null }) {
 export function CrowdMeter({ crowd }: { crowd: CrowdEstimate | null }) {
   const now = useNow();
   const lit = crowd?.level ? CROWD_SEGMENTS[crowd.level] : 0;
+  const updated = crowd?.lastUpdatedAt ? timeAgo(crowd.lastUpdatedAt, now) : '';
+  const basis = crowd ? basisText(crowd) : '';
   return (
     <div>
       <div className="flex gap-1.5" aria-hidden>
@@ -46,7 +48,12 @@ export function CrowdMeter({ crowd }: { crowd: CrowdEstimate | null }) {
           </p>
           <p className="text-sm font-medium">{waitText(crowd)}</p>
           <p className="mt-1 text-sm text-muted">
-            Updated {timeAgo(crowd.lastUpdatedAt, now)} from {basisText(crowd)}.
+            {updated || basis ? (
+              <>
+                {updated ? `Updated ${updated}` : 'Update time unavailable'}
+                {basis ? ` from ${basis}.` : '.'}
+              </>
+            ) : 'Estimate details are unavailable.'}
             {crowd.confidence === 'LOW' && ' Only one source so far, so treat it with care.'}
           </p>
         </>
