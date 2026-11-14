@@ -26,6 +26,8 @@ describe('format helpers', () => {
     expect(timeAgo(new Date(now - 10_000).toISOString(), now)).toBe('just now');
     expect(timeAgo(new Date(now - 4 * 60_000).toISOString(), now)).toBe('4 min ago');
     expect(timeAgo(new Date(now - 2 * 3600_000).toISOString(), now)).toBe('2 h ago');
+    expect(timeAgo('not-a-date', now)).toBe('');
+    expect(timeAgo(null, now)).toBe('');
   });
 
   it('words the wait estimate', () => {
